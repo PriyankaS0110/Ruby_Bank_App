@@ -1,7 +1,3 @@
-require_relative './validation'
-require_relative './account'
-require_relative './transaction'
-
 class Customer
 
   @@status = nil

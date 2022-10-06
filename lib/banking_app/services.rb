@@ -1,5 +1,4 @@
-require_relative './customer'
-require_relative './validation'
+require_relative "../banking_app.rb"
 
 user_input = 0
 

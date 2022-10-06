@@ -1,5 +1,3 @@
-require_relative './customer'
-
 class Account
   def self.profile(id_login)
     user__input = 0

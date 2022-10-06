@@ -2,6 +2,8 @@ require 'securerandom'
 
 module Validation
   NAME_REGEX = /[a-zA-Z]/
+  EMAIL_REGEX = /^(([A-Za-z0-9]*\.*_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\+)|([A-Za-z0-9]+\+))*[A-Z‌​a-z0-9]+@{1}((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,4}$/i
+  PASSWORD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
 
   def self.cust_id_generator
     SecureRandom.uuid
@@ -12,14 +14,16 @@ module Validation
   end
 
   def self.is_a_valid_name(name)
-    return if name =~ NAME_REGEX
-    p "Try valid Name"
-    false
+    if name =~ NAME_REGEX
+      return true
+    else
+      p "Try valid Name"
+      return false
+    end
   end
 
   def self.is_a_valid_email(mail)
-  # if mail =~ /^(([A-Za-z0-9]*\.*_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\+)|([A-Za-z0-9]+\+))*[A-Z‌​a-z0-9]+@{1}((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,4}$/i
-  if mail =~ NAME_REGEX
+  if mail =~ EMAIL_REGEX
     return true
   else 
    p "Try valid Mail"
@@ -37,8 +41,7 @@ module Validation
   end
 
   def self.is_a_valid_password(password)
-  #  if password =~ /^(?=.[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-  if password =~ /[a-zA-Z]/
+  if password =~ PASSWORD_REGEX
     return true
   else 
    p "Minimum 8 characters, 1 letter and 1 number needed"
